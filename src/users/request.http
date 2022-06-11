@@ -3,21 +3,37 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-    "email": "bb@bbb.net",
+    "email": "ccc@ccc.net",
     "password": "bbbbb"
 }
 
+### signin a user
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+    "email": "ccc@ccc.net",
+    "password": "bbbbb"
+}
+
+### signout a user
+GET http://localhost:3000/auth/signout
+
+### who am i
+GET http://localhost:3000/auth/whoami
+
+
 ### get a user by a given id
-GET http://localhost:3000/auth/1
+GET http://localhost:3000/auth/3
 
 ### get users by a given email
-GET http://localhost:3000/auth?email=bb@bbb.net
+GET http://localhost:3000/auth?email=xxx@xxx.com
 
 ### remove a user by a given id
 DELETE http://localhost:3000/auth/1
 
 ### update a user by a given id
-PATCH http://localhost:3000/auth/1
+PATCH http://localhost:3000/auth/3
 content-type: application/json
 
 {
