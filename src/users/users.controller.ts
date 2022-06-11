@@ -6,6 +6,7 @@ import { UserDto } from './dtos/user.dto';
 import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
 import { User } from './users.entity';
+import { CurrentUser } from './decorators/current-user.decorator';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -18,25 +19,25 @@ export class UsersController {
     @Post('signup')
     async signup(@Body() body: CreateUserDto, @Session() session: any) {
         const user = await this.authService.signup(body.email, body.password);
-        session.userId = user.id; 
+        session.currentUser = user;
         return user;
     }
 
     @Post('signin')
     async signin(@Body() body: CreateUserDto, @Session() session: any) {
         const user = await this.authService.signin(body.email, body.password);
-        session.userId = user.id;
+        session.currentUser = user;
         return user;
     }
 
     @Get('signout')
     signout(@Session() session: any) {
-        session.userId = null;
+        session.currentUser = null;
     }
 
     @Get('whoami')
-    whoami(@Session() session: any) {
-        console.log(session.userId);
+    whoami(@CurrentUser() currentUser: User) {
+        return currentUser;
     }
 
     @Get('/:id')
