@@ -1,0 +1,13 @@
+### Create a report
+POST http://localhost:3000/reports/
+Content-Type: application/json
+
+{
+    "make": "Toyota",
+    "model": "Vios",
+    "year": 2022,
+    "lng": 0,
+    "lat": 0,
+    "mileage": 10000,
+    "price": 500000
+}
