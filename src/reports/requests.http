@@ -11,3 +11,19 @@ Content-Type: application/json
     "mileage": 10000,
     "price": 500000
 }
+
+### Approve a particular report
+PATCH http://localhost:3000/reports/2
+content-type: application/json
+
+{
+    "approved": true
+}
+
+### Unapprove a particular report
+PATCH http://localhost:3000/reports/1
+content-type: application/json
+
+{
+    "approved": false
+}
