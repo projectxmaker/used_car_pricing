@@ -27,3 +27,6 @@ content-type: application/json
 {
     "approved": false
 }
+
+### Get estimate
+GET http://localhost:3000/reports?make=toyoto&model=corolla&lng=0&lat=0&year=2022&mileage=20000
