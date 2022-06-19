@@ -13,7 +13,7 @@ Content-Type: application/json
 }
 
 ### Approve a particular report
-PATCH http://localhost:3000/reports/1
+PATCH http://localhost:3000/reports/5
 content-type: application/json
 
 {
@@ -28,5 +28,8 @@ content-type: application/json
     "approved": false
 }
 
-### Get estimate
+### Get estimate with all params
 GET http://localhost:3000/reports?make=toyoto&model=corolla&lng=0&lat=0&year=2022&mileage=20000
+
+### Get estimate
+GET http://localhost:3000/reports?year=2022
