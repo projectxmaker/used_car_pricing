@@ -3,9 +3,10 @@ import { DataSourceOptions, DataSource } from "typeorm";
 
 const dsOptions: DataSourceOptions = <DataSourceOptions>{};
 Object.assign(dsOptions, DBOptions);
-const AppDataSource = new DataSource(dsOptions);
 
-AppDataSource.initialize()
+const _AppDataSource = new DataSource(dsOptions);
+
+_AppDataSource.initialize()
     .then(() => {
         console.log("Data Source has been initialized!")
     })
@@ -13,4 +14,4 @@ AppDataSource.initialize()
         console.error("Error during Data Source initialization", err)
     })
 
-export const dtSource = AppDataSource;
+export const AppDataSource = _AppDataSource;

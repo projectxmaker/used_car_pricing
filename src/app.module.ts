@@ -8,6 +8,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DBOptions } from '../db.datasourceoptions';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { AppDataSource } from '../db.datasource';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -27,7 +28,7 @@ const cookieSession = require('cookie-session');
         Object.assign(dbOptions, DBOptions);
 
         return dbOptions;
-      },   
+      },
     }),
     UsersModule, 
     ReportsModule

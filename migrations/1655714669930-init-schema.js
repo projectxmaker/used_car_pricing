@@ -1,7 +1,7 @@
 const { MigrationInterface, QueryRunner } = require("typeorm");
 
-module.exports = class initSchema1655712677438 {
-    name = 'initSchema1655712677438'
+module.exports = class initSchema1655714669930 {
+    name = 'initSchema1655714669930'
 
     async up(queryRunner) {
         await queryRunner.query(`CREATE TABLE "report" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "make" varchar NOT NULL, "model" varchar NOT NULL, "year" integer NOT NULL, "lng" integer NOT NULL, "lat" integer NOT NULL, "mileage" integer NOT NULL, "price" integer NOT NULL, "approved" boolean NOT NULL DEFAULT (0), "userId" integer)`);

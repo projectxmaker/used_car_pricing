@@ -1,0 +1,5 @@
+### generate migration file
+npm run typeorm migration:generate ./migrations/init-schema -- -o -d db.datasource.ts
+
+### run migration
+npm run typeorm migration:run -- -d ./db.datasource.ts
