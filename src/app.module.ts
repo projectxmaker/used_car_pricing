@@ -4,13 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
-import { User } from './users/users.entity';
-import { Report } from './reports/reports.entity';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DBOptions } from '../db.datasourceoptions';
-import { DataSource } from 'typeorm';
-import {TypeOrmModuleOptions} from '@nestjs/typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -28,7 +25,7 @@ const cookieSession = require('cookie-session');
         };
 
         Object.assign(dbOptions, DBOptions);
-        
+
         return dbOptions;
       },   
     }),
