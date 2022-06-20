@@ -10,6 +10,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DBOptions } from '../db.datasourceoptions';
 import { DataSource } from 'typeorm';
+import {TypeOrmModuleOptions} from '@nestjs/typeorm';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -20,10 +21,17 @@ const cookieSession = require('cookie-session');
     }),
     TypeOrmModule.forRootAsync({
       useFactory: (config: ConfigService) => {
-        return DBOptions;
+        const dbOptions: TypeOrmModuleOptions = {
+          // retryAttempts: 10,
+          // retryDelay: 3000,
+          // autoLoadEntities: false
+        };
+
+        Object.assign(dbOptions, DBOptions);
+        
+        return dbOptions;
       },   
     }),
-    
     UsersModule, 
     ReportsModule
   ],
