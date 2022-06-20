@@ -9,6 +9,7 @@ import { Report } from './reports/reports.entity';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DBOptions } from '../db.datasourceoptions';
+import { DataSource } from 'typeorm';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -17,18 +18,12 @@ const cookieSession = require('cookie-session');
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'sqlite',
-    //   database: 'db-dev.sqlite',
-    //   entities: [],
-    //   synchronize: true
-    // }),
     TypeOrmModule.forRootAsync({
-      inject: [ConfigService],
       useFactory: (config: ConfigService) => {
         return DBOptions;
-      }
+      },   
     }),
+    
     UsersModule, 
     ReportsModule
   ],

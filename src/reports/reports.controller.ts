@@ -5,9 +5,9 @@ import { AuthGuard } from '../guards/auth.guard';
 import { CurrentUser } from '../users/decorators/current-user.decorator';
 import { User } from '../users/users.entity';
 import { ReportDto } from './dtos/report.dto';
-import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { Serialize } from '../../src/interceptors/serialize.interceptor';
 import { ChangeApprovalDto } from './dtos/change-approval.dto';
-import { AdminGuard } from 'src/guards/admin.guards';
+import { AdminGuard } from '../../src/guards/admin.guards';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
 
 @Controller('reports')
