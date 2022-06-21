@@ -25,7 +25,7 @@ switch (process.env.NODE_ENV) {
             url: process.env.DATABASE_URL,
             migrationsRun: true,
             ssl: {
-                rejestUnauthorized: false
+                rejectUnauthorized: false
             }
         });
         break;
