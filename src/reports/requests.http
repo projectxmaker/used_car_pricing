@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "make": "Toyota",
     "model": "Vios",
-    "year": 2022,
+    "year": 2025,
     "lng": 0,
     "lat": 0,
     "mileage": 10000,
@@ -29,7 +29,10 @@ content-type: application/json
 }
 
 ### Get estimate with all params
-GET http://localhost:3000/reports?make=toyoto&model=corolla&lng=0&lat=0&year=2022&mileage=20000
+GET http://localhost:3000/reports/estimate?make=toyoto&model=corolla&lng=0&lat=0&year=2022&mileage=20000
 
 ### Get estimate
-GET http://localhost:3000/reports?year=2022
+GET http://localhost:3000/reports/estimate?year=2022
+
+### Get list of report of a particular user id
+GET http://localhost:3000/reports?userId=1

@@ -5,6 +5,7 @@ import { Report } from './reports.entity';
 import { CreateReportDto } from './dtos/create-report.dto';
 import { User } from '../users/users.entity';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
+import { GetReportList } from './dtos/get-report-list.dto';
 
 @Injectable()
 export class ReportsService {
@@ -46,6 +47,54 @@ export class ReportsService {
         }
         
         return query.getRawOne();
+    }
+
+    async getReportList({make, model, year, lng, lat, mileage, userId}: Partial<GetReportList>) {
+        const query = await this.repo.createQueryBuilder()
+            .select('Report')
+            .where("TRUE");
+
+        query.andWhere('approved = 1');
+
+        if (make) {
+            query.andWhere('make = LOWER(:make)', {make});
+        }
+
+        if (model) {
+            query.andWhere("model = LOWER(:model)", {model});
+        }
+
+        if (year) {
+            query.andWhere("year - :year BETWEEN -3 AND +3", {year});
+        }
+
+        if (lng) {
+            query.andWhere("lng - :lng BETWEEN -5 AND +5", {lng});
+        }
+
+        if (lat) {
+            query.andWhere("lat - :lat BETWEEN -5 AND +5", {lat});
+        }
+
+        if (mileage) {
+            query
+                .andWhere("mileage - :mileage BETWEEN -1000 AND +1000", {mileage})
+                .orderBy("mileage", "DESC");
+        } else {
+            query.orderBy("price", "DESC");
+        }
+
+        if (userId) {
+            query
+                .leftJoinAndSelect("Report.user", "user")
+                .where("user.id = :id", { id: userId })
+
+        }
+
+        //console.log('>> query: ', query.getQueryAndParameters());
+        const reports = query.getMany();
+        console.log(reports);
+        return reports;
     }
 
     create(body: CreateReportDto, user: User) {

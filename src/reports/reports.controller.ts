@@ -9,14 +9,20 @@ import { Serialize } from '../../src/interceptors/serialize.interceptor';
 import { ChangeApprovalDto } from './dtos/change-approval.dto';
 import { AdminGuard } from '../../src/guards/admin.guards';
 import { GetEstimateDto } from './dtos/get-estimate.dto';
+import { GetReportList } from './dtos/get-report-list.dto';
 
 @Controller('reports')
 export class ReportsController {
     constructor(private reportsService: ReportsService) {}
 
-    @Get()
+    @Get('/estimate')
     getEstimate(@Query() query: Partial<GetEstimateDto>) {
         return this.reportsService.createEstimate(query);
+    }
+
+    @Get()
+    getReportList(@Query() query: Partial<GetReportList>) {
+        return this.reportsService.getReportList(query);
     }
 
     @Post()
